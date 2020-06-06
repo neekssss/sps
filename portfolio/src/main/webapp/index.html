@@ -2,17 +2,47 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Nicholas' Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
   <body>
     <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
+      <h1>Nicholas' Portfolio</h1>
+      
+    <h3>About Me</h3>
+      <img src="images/niklus.jpg" align="left" style="margin: 0px 30px 0px 0px;width:200px;height:260px;border:5px double black"/>
+      <p>Hello, I'm Nicholas! I enjoy basketball, mountain biking, and reading. 
+         My family is originally from Serbia, but have since moved to Vancouver, BC. 
+         Growing up I competed in many sports, like Hockey, Track and Field, and Basketball, and I find that their team
+         aspects helped shape who I am today.
+      </p>
+      <p>Nowadays, I study Electrical Engineering at the University of British Columbia and spend my free time weightlifting,
+         playing video games, taking long walks on the beach with my dog, and relaxing with my cat.
+      </p>
+
+      <p>I also spend much of my time designing, constucting, and flying RC aircraft. I utilize this hobby with my school's
+         Unmanned Aircraft Systems (UAS) design team, where we build large scale quadcopters for industrial uses.
+      </p>
+
+    <h3>Projects</h3>
+      <ul>
+        <li><a href="drones.html">Drones</a></li>
+        <li><a href="video.html">5.8 Ghz Analog Video Reciever</a></li>
+      </ul>
+
+    <h3>Links</h3>
+        <button onclick="window.location.href='https://github.com/neekssss';">
+            GitHub
+        </button>
+        <button onclick="window.location.href='https://www.linkedin.com/in/nicholas-z-2b2142121/';">
+            LinkedIn
+        </button>
+
       <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
+      <button onclick="addRandomGreeting()">Quotes from "The Incredibles"</button>
       <div id="greeting-container"></div>
+
     </div>
   </body>
 </html>
