@@ -27,9 +27,33 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
-// async/await function for fetch portion of week 2
+/*
+// async/await function for fetch/JSON portion of week 2
 async function getHelloMessage() {
-  const response = await fetch('/hello');
+  const response = await fetch('/data');
   const message = await response.text();
-  document.getElementById('hello-container').innerText = message;
+  document.getElementById('message-container').innerText = message;
+  console.log(message);
+}
+*/
+
+function getHelloMessage() {
+  fetch('/data').then(response => response.json()).then((messages) => {
+
+    const statsListElement = document.getElementById('message-container');
+    statsListElement.innerHTML = '';
+    statsListElement.appendChild(
+        createListElement('Message 1: ' + messages[0]));
+    statsListElement.appendChild(
+        createListElement('Message 2: ' + messages[1]));
+    statsListElement.appendChild(
+        createListElement('Message 3: ' + messages[2]));  
+  });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
