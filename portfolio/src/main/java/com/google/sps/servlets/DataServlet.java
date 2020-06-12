@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/* Original servlet
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
@@ -28,5 +29,19 @@ public class DataServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html;");
     response.getWriter().println("<h1>Hello Nicholas!</h1>");
+  }
+}
+*/
+
+@WebServlet("/hello")
+public final class DataServlet extends HttpServlet {
+
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    String message = "Hello Nicholas!!!";
+
+    response.setContentType("text/html;");
+    response.getWriter().println(message);
   }
 }
