@@ -12,9 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
+
+// Adds a random greeting to the page.
 function addRandomGreeting() {
   const greetings =
       ['"Wheres my super suit!?" ~Frozone', '"You sly dog! You got me monologuing!" ~Syndrome', '"No capes！" ~Edna Mode', '"This is a hobo suit, darling." ~Edna Mode'];
@@ -27,27 +26,18 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
-/*
-// async/await function for fetch/JSON portion of week 2
-async function getHelloMessage() {
-  const response = await fetch('/data');
-  const message = await response.text();
-  document.getElementById('message-container').innerText = message;
-  console.log(message);
-}
-*/
-
 function getHelloMessage() {
   fetch('/data').then(response => response.json()).then((messages) => {
+    
+    console.log(messages);
 
-    const statsListElement = document.getElementById('message-container');
-    statsListElement.innerHTML = '';
-    statsListElement.appendChild(
-        createListElement('Message 1: ' + messages[0]));
-    statsListElement.appendChild(
-        createListElement('Message 2: ' + messages[1]));
-    statsListElement.appendChild(
-        createListElement('Message 3: ' + messages[2]));  
+    if (messages.length > 0) {
+        // Build the list of comments.
+        const statsListElement = document.getElementById('history'); // works
+        messages.forEach((line) => {
+            statsListElement.appendChild(createListElement(line));
+        });
+    }
   });
 }
 
