@@ -22,33 +22,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
-/* Original servlet
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
-
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello Nicholas!</h1>");
-  }
-}
-*/
-
-/* Part 2
-@WebServlet("/data")
-public final class DataServlet extends HttpServlet {
-
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-    String message = "Hello Nicholas!!!";
-
-    response.setContentType("text/html;");
-    response.getWriter().println(message);
-  }
-}
-*/
 
 @WebServlet("/data")
 public final class DataServlet extends HttpServlet {
@@ -58,18 +31,24 @@ public final class DataServlet extends HttpServlet {
   @Override
   public void init() {
     messages = new ArrayList<>();
-    messages.add("Message One");
-    messages.add("Message Two");
-    messages.add("Message Three");
+    //messages.add("TEST");
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-    String message = convertToJsonUsingGson(messages);
-
     response.setContentType("application/json;");
+    String message = convertToJsonUsingGson(messages);
     response.getWriter().println(message);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    // Get the input from the form.
+    String comment = getComment(request);
+    messages.add(comment);
+    // Redirect back to the HTML page.
+    response.sendRedirect("/index.html");
   }
 
   private String convertToJsonUsingGson(ArrayList messages) {
@@ -77,4 +56,13 @@ public final class DataServlet extends HttpServlet {
     String json = gson.toJson(messages);
     return json;
   }
+
+  // Get Comment
+  private String getComment(HttpServletRequest request) {
+    // Get the input from the form.
+    String userComment = request.getParameter("user-comment");
+
+    return userComment;
+  }
+
 }

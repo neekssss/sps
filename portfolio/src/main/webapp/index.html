@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getHelloMessage()">
     <div id="content">
       <h1>Nicholas' Portfolio</h1>
 
@@ -20,7 +20,6 @@
       <p>Nowadays, I study Electrical Engineering at the University of British Columbia and spend my free time weightlifting,
          playing video games, taking long walks on the beach with my dog, and relaxing with my cat.
       </p>
-
       <p>I also spend much of my time designing, constucting, and flying RC aircraft. I utilize this hobby with my school's
          Unmanned Aircraft Systems (UAS) design team, where we build large scale quadcopters for industrial uses.
       </p>
@@ -39,16 +38,22 @@
             LinkedIn
         </button>
 
-    <!-- Week 2 Part 3: fetch() -->
-    <div id="content" style="border:5px double black">
-      <h3>Messages</h3>  
-      <button onclick="getHelloMessage()">Click for message list!</button>
-      <div id="message-container"></div>
-    </div>
 
       <p>Click here to get a random message:</p>
       <button onclick="addRandomGreeting()">Quotes from "The Incredibles"</button>
       <div id="greeting-container"></div>
+      
+
+    <form action="/data" method="POST">
+
+      <h3>Add Comment:</h3>
+      <input type="string" name="user-comment">
+      <br/><br/>
+
+      <input type="submit" />
+    </form>
+    
+    <ul id="history"></ul>
 
     </div>
   </body>
