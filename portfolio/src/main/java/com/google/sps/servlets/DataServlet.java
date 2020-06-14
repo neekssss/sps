@@ -22,6 +22,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+
 
 @WebServlet("/data")
 public final class DataServlet extends HttpServlet {
@@ -46,7 +50,15 @@ public final class DataServlet extends HttpServlet {
 
     // Get the input from the form.
     String comment = getComment(request);
+    
     messages.add(comment);
+
+    Entity commentEntity = new Entity("User Comments");
+    commentEntity.setProperty("Comment", comment);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
+
     // Redirect back to the HTML page.
     response.sendRedirect("/index.html");
   }
@@ -64,5 +76,4 @@ public final class DataServlet extends HttpServlet {
 
     return userComment;
   }
-
 }
