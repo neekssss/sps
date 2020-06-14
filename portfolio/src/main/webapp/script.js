@@ -33,7 +33,7 @@ function getHelloMessage() {
 
     if (messages.length > 0) {
         // Build the list of comments.
-        const statsListElement = document.getElementById('history'); // works
+        const statsListElement = document.getElementById('history');
         messages.forEach((line) => {
             statsListElement.appendChild(createListElement(line));
         });
