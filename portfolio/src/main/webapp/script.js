@@ -52,22 +52,23 @@ function createListElement(text) {
 
 /** Creates a chart and adds it to the page. */
 function drawChart() {
-  const data = new google.visualization.DataTable();
-  data.addColumn('string', 'Animal');
-  data.addColumn('number', 'Count');
-        data.addRows([
-          ['Lions', 10],
-          ['Tigers', 5],
-          ['Bears', 15]
-        ]);
+  fetch('/vote-data').then(response => response.json())
+  .then((animalVotes) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Animal');
+    data.addColumn('number', 'Votes');
+    Object.keys(animalVotes).forEach((animal) => {
+      data.addRow([animal, animalVotes[animal]]);
+    });
 
-  const options = {
-    'title': 'Zoo Animals',
-    'width':500,
-    'height':400
-  };
+    const options = {
+      'title': 'Favorite Pets/Animals',
+      'width':600,
+      'height':500
+    };
 
-  const chart = new google.visualization.PieChart(
-      document.getElementById('chart-container'));
-  chart.draw(data, options);
+    const chart = new google.visualization.ColumnChart(
+        document.getElementById('chart-container'));
+    chart.draw(data, options);
+  });
 }
