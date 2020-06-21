@@ -31,8 +31,6 @@ function addRandomGreeting() {
 function getHelloMessage() {
   fetch('/data').then(response => response.json()).then((messages) => {
     
-    console.log(messages);
-
     if (messages.length > 0) {
         // Build the list of comments.
         const statsListElement = document.getElementById('history');
@@ -57,6 +55,7 @@ function drawChart() {
     const data = new google.visualization.DataTable();
     data.addColumn('string', 'Animal');
     data.addColumn('number', 'Votes');
+    console.log(animalVotes);
     Object.keys(animalVotes).forEach((animal) => {
       data.addRow([animal, animalVotes[animal]]);
     });
