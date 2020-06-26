@@ -44,8 +44,20 @@
       <button onclick="addRandomGreeting()">Quotes from "The Incredibles"</button>
       <div id="greeting-container"></div>
 
-    <h3>Test Chart</h3>
+    <h3>Vote On Your Favorite Pet/Animal</h3>
     <div id="chart-container"></div>
+    <h2>Vote</h2>
+    <form action="/vote-data" method="POST">
+      <select name="animal">
+        <option value="Cat">Cat</option>
+        <option value="Dog">Dog</option>
+        <option value="Horse">Horse</option>
+        <option value="Parrot">Parrot</option>
+        <option value="Rabbit">Rabbit</option>
+        <option value="Other">Other</option>
+      </select>
+      <button>Submit</button>
+    </form>
       
 
     <form action="/data" method="POST">

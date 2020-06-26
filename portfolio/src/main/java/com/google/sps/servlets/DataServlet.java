@@ -62,8 +62,6 @@ public final class DataServlet extends HttpServlet {
     // Get the input from the form.
     String comment = getComment(request);
     long timestamp = System.currentTimeMillis();
-    
-    // messages.add(comment);
 
     Entity commentEntity = new Entity("Task");
     commentEntity.setProperty("comment", comment);
