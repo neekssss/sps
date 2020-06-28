@@ -25,8 +25,8 @@ public final class FindMeetingQuery {
     Collection<TimeRange> times = new ArrayList<TimeRange>(); // return values
     long length = request.getDuration(); // meeting length
     int size = 1440; // minutes in a day
-    boolean[] openTimes = new boolean[size]; // initialize array to compare times (all set to TRUE to begin)
-    Arrays.fill(openTimes, Boolean.TRUE);
+    boolean[] opentimes = new boolean[size]; // initialize array to compare times (all set to TRUE to begin)
+    Arrays.fill(opentimes, Boolean.TRUE);
 
     if (length > size) {
         return times;
@@ -39,11 +39,29 @@ public final class FindMeetingQuery {
         for(String person : people) { // if includes atendee of event
             if (people.contains(person)) {
                 for (int j = range.start(); j < range.end(); j++) { // sets all already sceduled times to false
-                    openTimes[j] = false;
+                    opentimes[j] = false;
                 }
             }
         }
     }
+
+    int mlength;
+    int i = 0;
+    while (i < opentimes.length) {
+      if (opentimes[i]) { // if time is free
+        for (mlength = 0; i + mlength < opentimes.length && opentimes[i + mlength]; mlength++);
+        if(mlength >= length) { // check if meeting fits anywhere
+          times.add(TimeRange.fromStartDuration(i, mlength));
+        }
+        i = mlength + i;
+      } else {
+        i++;
+      }
+    }
+
+    return times;
+
     //throw new UnsupportedOperationException("TODO: Implement this method.");
+
   }
 }
